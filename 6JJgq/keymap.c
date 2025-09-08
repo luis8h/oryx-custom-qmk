@@ -590,3 +590,4 @@ bool process_detected_host_os_kb(os_variant_t detected_os) {
     key_overrides[i] = NULL;
     return true;
 }
+
