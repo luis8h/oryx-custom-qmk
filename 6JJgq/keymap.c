@@ -518,3 +518,78 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
+
+
+
+
+// custom
+#include <string.h>
+
+#define MAX_KEY_OVERRIDES 10
+const key_override_t *key_overrides[MAX_KEY_OVERRIDES] = { NULL };
+
+bool process_detected_host_os_kb(os_variant_t detected_os) {
+    if (!process_detected_host_os_user(detected_os)) {
+        return false;
+    }
+
+    // Shift + Backspace → Delete (applies to all OS)
+    // static const key_override_t shift_backspace_override =
+        // ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
+
+    // Ctrl + Backspace → Option + Backspace (only for macOS)
+    static const key_override_t macos_backspace_ctl_override =
+        ko_make_basic(MOD_MASK_CTRL, KC_BSPC, LALT(KC_BSPC));
+    static const key_override_t macos_left_ctl_override =
+        ko_make_basic(MOD_MASK_CTRL, KC_LEFT, LALT(KC_LEFT));
+    static const key_override_t macos_right_ctl_override =
+        ko_make_basic(MOD_MASK_CTRL, KC_RIGHT, LALT(KC_RIGHT));
+
+    static const key_override_t macos_backspace_alt_override =
+        ko_make_basic(MOD_MASK_ALT, KC_BSPC, LCTL(KC_BSPC));
+    static const key_override_t macos_left_alt_override =
+        ko_make_basic(MOD_MASK_ALT, KC_LEFT, LCTL(KC_LEFT));
+    static const key_override_t macos_right_alt_override =
+        ko_make_basic(MOD_MASK_ALT, KC_RIGHT, LCTL(KC_RIGHT));
+
+    static const key_override_t macos_ctl_tab =
+        ko_make_basic(MOD_MASK_CTRL, KC_TAB, LGUI(KC_TAB));
+    static const key_override_t macos_gui_tab =
+        ko_make_basic(MOD_MASK_GUI, KC_TAB, LCTL(KC_TAB));
+
+    // Default key overrides (applies to all OS)
+    static const key_override_t *default_key_overrides[] = {
+        // &shift_backspace_override,
+        NULL
+    };
+
+    // macOS-specific key overrides (Shift + Backspace + Ctrl behavior)
+    static const key_override_t *mac_key_overrides[] = {
+        // &shift_backspace_override,
+        &macos_backspace_ctl_override,
+        &macos_left_ctl_override,
+        &macos_right_ctl_override,
+        &macos_backspace_alt_override,
+        &macos_left_alt_override,
+        &macos_right_alt_override,
+        &macos_ctl_tab,
+        &macos_gui_tab,
+        NULL
+    };
+
+    // Apply overrides based on OS
+    // pick which source list to copy
+    const key_override_t * const *src = (detected_os == OS_MACOS || detected_os == OS_IOS)
+        ? mac_key_overrides
+        : default_key_overrides
+        ;
+
+    // copy pointers into the global array
+    // sizeof(src) doesn’t work (it's a pointer), so we compute element count manually:
+    size_t i = 0;
+    for (; src[i] && i < MAX_KEY_OVERRIDES-1; ++i) {
+        key_overrides[i] = src[i];
+    }
+    key_overrides[i] = NULL;
+    return true;
+}
