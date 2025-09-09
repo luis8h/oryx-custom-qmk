@@ -26,25 +26,25 @@ enum custom_keycodes {
 
 
 
-#define DUAL_FUNC_0 LT(4, KC_V)
-#define DUAL_FUNC_1 LT(3, KC_A)
-#define DUAL_FUNC_2 LT(6, KC_F4)
-#define DUAL_FUNC_3 LT(7, KC_8)
-#define DUAL_FUNC_4 LT(11, KC_F23)
-#define DUAL_FUNC_5 LT(12, KC_R)
-#define DUAL_FUNC_6 LT(13, KC_N)
-#define DUAL_FUNC_7 LT(4, KC_F2)
-#define DUAL_FUNC_8 LT(3, KC_B)
-#define DUAL_FUNC_9 LT(10, KC_C)
-#define DUAL_FUNC_10 LT(12, KC_F18)
-#define DUAL_FUNC_11 LT(2, KC_V)
-#define DUAL_FUNC_12 LT(1, KC_F8)
-#define DUAL_FUNC_13 LT(14, KC_7)
+#define DUAL_FUNC_0 LT(14, KC_M)
+#define DUAL_FUNC_1 LT(11, KC_O)
+#define DUAL_FUNC_2 LT(4, KC_F14)
+#define DUAL_FUNC_3 LT(12, KC_6)
+#define DUAL_FUNC_4 LT(3, KC_F7)
+#define DUAL_FUNC_5 LT(8, KC_H)
+#define DUAL_FUNC_6 LT(14, KC_S)
+#define DUAL_FUNC_7 LT(12, KC_D)
+#define DUAL_FUNC_8 LT(6, KC_F3)
+#define DUAL_FUNC_9 LT(14, KC_F4)
+#define DUAL_FUNC_10 LT(10, KC_W)
+#define DUAL_FUNC_11 LT(12, KC_Y)
+#define DUAL_FUNC_12 LT(3, KC_3)
+#define DUAL_FUNC_13 LT(15, KC_F13)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, MT(MOD_LALT, KC_Q),KC_W,           KC_F,           KC_P,           ALL_T(KC_B),    KC_TRANSPARENT,                                 KC_TRANSPARENT, ALL_T(KC_J),    LT(6, KC_L),    LT(9, KC_U),    LT(5, KC_Y),    KC_BSPC,        KC_TRANSPARENT, 
+    KC_TRANSPARENT, MT(MOD_LALT, KC_Q),KC_W,           KC_F,           KC_P,           ALL_T(KC_B),    KC_TRANSPARENT,                                 KC_TRANSPARENT, ALL_T(KC_J),    LT(6, KC_L),    LT(9, KC_U),    LT(5, KC_Y),    KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, LT(8, KC_A),    MT(MOD_LGUI, KC_R),MT(MOD_LSFT, KC_S),MT(MOD_LCTL, KC_T),KC_G,           KC_TRANSPARENT,                                                                 KC_TRANSPARENT, KC_M,           MT(MOD_LCTL, KC_N),MT(MOD_RSFT, KC_E),MT(MOD_LGUI, KC_I),MT(MOD_LALT, KC_O),KC_TRANSPARENT, 
     KC_TRANSPARENT, LT(8, KC_Z),    LT(3, KC_X),    KC_C,           MT(MOD_RALT, KC_D),KC_V,                                           KC_K,           MT(MOD_RALT, KC_H),KC_COMMA,       LT(3, KC_DOT),  OSL(2),         KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, LT(7, KC_ESCAPE),KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, OSL(1),         KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
