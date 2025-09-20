@@ -361,14 +361,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->tap.count > 0) {
         if (record->event.pressed) {
           layer_move(0);
+          clear_oneshot_mods();
         } else {
           layer_move(0);
+          clear_oneshot_mods();
         }
       } else {
         if (record->event.pressed) {
           layer_on(7);
+          clear_oneshot_mods();
         } else {
           layer_off(7);
+          clear_oneshot_mods();
         }  
       }  
       return false;
